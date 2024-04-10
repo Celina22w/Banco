@@ -31,15 +31,150 @@
 	var email = prompt("Por favor, informe o seu e-mail de conta. ");
 	var senha = prompt ("Por favor, informe a sua senha.");
 
-	 if (login(email,senha));{
+	 if (login(email,senha)) {
 	   alert("Login efetuado com sucesso!");
 	
-	} else{
+	} else {
 		alert("E-mail ou senha inválidos!");
 	}
 
+	var saldo = 500.5;
+	
+	function Saldo() {
+			if (!validarSenha()) {
+				return;
+			}
+			alert('Seu saldo atual é: ' + saldo);
 
+	}
 
+	var transacoes = [
+		{tipo:"Depósito", valor: 500, data: "2024-03-01"},
+		{tipo:"Saque", valor: 125, data: "2024-04-12"},
+		{tipo:"Transferência", valor: 48, data: "2024-04-09"},
+		{tipo:"Depósito", valor: 200, data: "2024-04-10"}
+
+	];
+
+	function Extrato() {
+		if (!validarSenha()){
+			return;
+		}
+	
+
+	var extratoString = "Extrato:\n";
+	for (var i = 0; i < transacoes.length; i++) {
+		extratoString += transacoes[i].tipo + ": RS" + transacoes[i].valor + " em " + transacoes[i].data + "\n";
+	
+	   }
+	   alert(extratoString);
+
+    }
+
+	function Saque() {
+		if (!validarSenha()) {
+			return;
+		}
+		var valorSaque = parseFloat(prompt("Digite o valor que deseja sacar:"));
+		if (valorSaque <= 0 || isNaN(valorSaque)) {
+			alert("Operação não autorizada. O valor a ser sacado deve ser maior que zero e válido.");
+			return;
+		}
+		if (valorSaque > saldo) {
+			alert ("Operação não autorizada. Você não tem saldo suficiente para realizar este saque.");
+			return;
+		}
+		saldo -= valorSaque;
+		alert("Saque de " + valorSaque + " realizado com sucesso. Seu novo saldo é: " + saldo);
+
+	}
+
+	function Depósito() {
+		if (!validarSenha()) {
+			return;
+		}
+		var valorDeposito = parseFloat(prompt("Digite o valor que deseja depositar:"));
+		if (valorDeposito <= 0 || isNaN(valorDeposito)) {
+			alert("Operação não autorizada. O valor a ser depositado deve ser maior que zero e válido.");
+			return;
+		}
+		saldo += valorDeposito;
+		alert("Depósito de " + valorDeposito + " realizado com sucesso. Seu novo saldo é: " + saldo);
+
+	}
+
+	function Transferência() {
+		if (!validarSenha()) {
+			return;
+		}
+		var valorTransferencia = parseFloat(prompt("Digite o valor que deseja transferir:"));
+		if (valorTransferencia <= 0 || isNaN(valorTransferencia)) {
+			alert("Operação não autorizada. O valor a ser transferido deve ser maior que zero e válido.");
+			return;
+		}
+		if(valorTransferencia > saldo) {
+			alert("Operação não autorizada. Você não tem saldo suficiente para realizar esta transferência.");
+			return;
+		}
+
+		var numeroConta = prompt("Digite o número da conta de destino:");
+		saldo -= valorTransferencia;
+		alert("Transferência de " + valorTransferencia + " realizada para a conta " + numeroConta + ". Seu novo saldo é: " + saldo);
+
+	}
+
+	function Sair(nome) {
+		var Sair;
+		if(!validarSenha()) {
+			return alert(nome + ", foi um prazer ter você por aqui!");
+			
+		}
+	}
+
+	function validarSenha() {
+		var senha = prompt("Por favor, insira sua senha:");
+		return senha === "3589";
+	}
+
+	function exibirMenu() {
+		return prompt("Escolha uma opção:\n1. Saldo\n2. Extrato\n3. Saque\n4. Depósito\n5. Transferência\n6. Sair");
+	}
+
+	function erro() {
+		alert('Por favor, informe um número entre 1 e 6');
+		inicio();
+
+	}
+
+	function inicio() {
+		while(true) {
+			var opcao = exibirMenu();
+			switch (opcao) {
+				case '1':
+					Saldo();
+					break;
+				case '2':
+					Extrato();
+					break;
+					case '3':
+					Saque();
+					break;
+				case '4':
+					Depósito();
+					break;
+					case '5':
+					Transferência();
+					break;
+				case '6':
+					Sair();
+						
+
+			
+			}
+		}
+	}
+
+    inicio ();
 
 
 </script>

@@ -18,7 +18,7 @@
     acessarSistema();
 
     function login(email, senha) {
-        if (email == "lassy2020@gmail.tom" && senha == "1820") {
+        if (email == "lassy2020@gmail.tom" && senha == "123") {
             return true;
         } else {
             return false;
@@ -57,7 +57,7 @@
         }
         var extratoString = "Extrato:\n";
         for (var i = 0; i < transacoes.length; i++) {
-            extratoString += transacoes[i].tipo + ": $" + transacoes[i].valor + " em " + transacoes[i].data + "\n";
+            extratoString += transacoes[i].tipo + ": RS" + transacoes[i].valor + " em " + transacoes[i].data + "\n";
         }
         alert(extratoString);
     }
@@ -113,8 +113,9 @@
     function Sair(nome) {
         if (!validarSenha()) {
 			alert(nome + ", foi um prazer ter você por aqui!");
-		}
-    
+            return;
+			
+        }
     }
 
     function validarSenha() {
@@ -151,8 +152,9 @@
                     Transferência();
                     break;
                 case '6':
-                    Sair(nome);
-                    return;
+                    Sair();
+					alert(nome + ", foi um prazer ter você por aqui!");
+                    
             }
         }
     }

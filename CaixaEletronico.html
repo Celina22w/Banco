@@ -123,10 +123,9 @@
 
 	}
 
-	function Sair(nome) {
-		var Sair;
+	function Sair() {
 		if(!validarSenha()) {
-			return alert(nome + ", foi um prazer ter você por aqui!");
+			return;
 			
 		}
 	}
@@ -167,6 +166,7 @@
 					break;
 				case '6':
 					Sair();
+                alert(nome + ", foi um prazer ter você por aqui!");
 						
 
 			
